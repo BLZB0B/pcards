@@ -1,0 +1,61 @@
+  <div class="container border-purple background-purple">
+    <div class="innerContainer">
+        <div class="title-and-estimate-container">
+          <div class="title-container">
+            <div class="title-text">
+              <strong>Title:&nbsp;</strong>{{title}}
+            </div>
+          </div>
+           <div class="estimate-container border-purple"><span style="font-size: 9pt;float: left;"> Priority<br/></span><span style="float:left">{{priority}}</span></div>
+          {{!-- <div class="estimate-container border-purple background-purple">{{priority}}</div> --}}
+        </div>
+        <div class="userstory-and-discipline-container">
+          <div class="user-story"> 
+            <strong>Problem or Opportunity:</strong><br/>
+            {{{problemoropportunity}}}
+           </div>
+          <!-- <div class="discipline-container">
+            <div class="discipline">
+              <div class="description">Dev</div>
+              <div class="box border-purple"></div>
+            </div>
+            <div class="discipline">
+              <div class="description">UX</div>
+              <div class="box border-purple"></div>
+            </div>
+            <div class="discipline">
+                <div class="description">Infra</div>
+                <div class="box border-purple"></div>
+              </div>
+          </div> -->
+        </div>
+        <hr/>
+        <!-- <div class="acceptance-criteria-container">
+          <div class="acceptance-criteria">
+            <strong>Acceptance Criteria:</strong><br/>
+              {{{acceptance_criteria}}}
+          </div>
+        </div>
+        <hr/> -->
+
+          <div class="po-vsts-container-justifications">
+            <div class="po">
+                Revenue Amount: £ {{revenueamount}}
+            </div>
+            <div class="po">
+                Time Saving: {{timesaving}} hrs
+            </div>
+            <div class="po">
+                Cost Saving: £ {{costsaving}}
+            </div>
+        </div>
+         <div class="po-vsts-container-bottom">
+            <div class="po">
+              <strong>Product Sponsor: {{sponsor}}</strong>
+            </div>
+            <div class="vsts-number">
+              <strong>{{number}}</strong> 
+            </div>
+          </div>
+          </div>
+      </div>

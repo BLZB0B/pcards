@@ -19,10 +19,12 @@ Currently supports the following work items:
 - User Story
 - Bug
 - Task
+- Backlog
 
 ![User story card](static/img/pretty_card_user_story.png)
 ![Bug card](static/img/pretty_card_bug.png)
 ![Task card](static/img/pretty_card_task.png)
+![Backlog card](static/img/pretty_card_backlog.png)
 
 ## Browser support
 
@@ -41,6 +43,7 @@ Currently supports the following work items:
 ### August 18,2018 (1.0.35)
 
 - Display error within the print preview if a template isn't supported.
+
 
 ## Credits
 

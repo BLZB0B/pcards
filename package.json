@@ -14,14 +14,14 @@
   },
   "devDependencies": {
     "cpx": "^1.5.0",
-    "rimraf": "^2.6.1",
-    "tfx-cli": "^0.5.10",
-    "ts-loader": "^4.4.2",
-    "tslint": "^5.11.0",
-    "tslint-loader": "^3.6.0",
-    "typescript": "^2.8.3",
-    "webpack": "^4.16.3",
-    "webpack-cli": "^3.1.0",
+    "rimraf": "^2.6.3",
+    "tfx-cli": "^0.6.4",
+    "ts-loader": "^5.3.3",
+    "tslint": "^5.15.0",
+    "tslint-loader": "^3.5.4",
+    "typescript": "^3.4.1",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
     "webpack-merge": "^4.1.4"
   },
   "dependencies": {
@@ -30,7 +30,7 @@
     "handlebars": "^4.0.11",
     "handlebars-loader": "^1.7.0",
     "office-ui-fabric-js": "^1.4.0",
-    "vss-web-extension-sdk": "5.131.0"
+    "vss-web-extension-sdk": "5.141.0"
   },
   "name": "pcards",
   "private": true,

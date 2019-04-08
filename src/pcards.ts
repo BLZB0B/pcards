@@ -4,6 +4,8 @@ import Q = require("q");
 const userStoryTemplate = require("./templates/user-story.handlebars");
 const bugTemplate = require("./templates/bug.handlebars");
 const taskTemplate = require("./templates/task.handlebars");
+const backlogTemplate = require("./templates/backlog.handlebars");
+const featureTemplate = require("./templates/feature.handlebars");
 
 const extensionContext = VSS.getExtensionContext();
 const client = WITClient.getClient();
@@ -52,6 +54,8 @@ const printWorkItems = {
                 let bugCard: any;
                 let userStoryCard: any;
                 let taskCard: any;
+                let backlogCard: any;
+                let featureCard: any;
 
                 if (page.type === "Bug") {
                   bugCard = bugTemplate({
@@ -79,6 +83,29 @@ const printWorkItems = {
                   });
                 }
 
+                if (page.type === "Product Backlog Item") {
+                  backlogCard = backlogTemplate({
+                    number: page.id,
+                    title: page.title,
+                    description: page.description,
+                    acceptance_criteria: page.acceptance_criteria
+                  });
+                }
+
+                if (page.type === "Feature") {
+                  featureCard = featureTemplate({
+                    number: page.id,
+                    title: page.title,
+                    description: page.description,
+                    problemoropportunity: page.problemoropportunity,
+                    revenueamount: page.revenueamount,
+                    timesaving: page.timesaving,
+                    costsaving: page.costsaving,
+                    sponsor: page.sponsor,
+                    priority: page.priority
+                  });
+                }
+
                 if (page.type === "Bug") {
                   workItems.innerHTML += bugCard;
                 }
@@ -88,8 +115,15 @@ const printWorkItems = {
                 if (page.type === "Task") {
                   workItems.innerHTML += taskCard;
                 }
-                if (page.type !== "User Story" && page.type !== "Bug" && page.type !== "Task") {
-                  workItems.innerHTML += "<div class='container'>Work item type not supported. Submit pull requests here: https://github.com/ryanjones/pcards</div>";
+                if (page.type === "Product Backlog Item") {
+                  workItems.innerHTML += backlogCard;
+                }
+                if (page.type === "Feature") {
+                  workItems.innerHTML += featureCard;
+                }
+                if (page.type !== "User Story" && page.type !== "Bug" && page.type !== "Task" && page.type !== "Product Backlog Item" &&  page.type !== "Feature") {
+                  workItems.innerHTML += "<div class='container'>Work item type not supported. Submit pull requests here: https://github.com/blzb0b/pcards</div>";
+                  workItems.innerHTML += "page type: " + page.type;
                 }
               });
               document.body.appendChild(workItems);
@@ -154,6 +188,33 @@ function prepare(workItems: Models.WorkItem[]) {
         "id":  item.fields["System.Id"]
       };
     }
+
+    if (item.fields["System.WorkItemType"] === "Product Backlog Item") {
+      result = {
+        "type": item.fields["System.WorkItemType"],
+        "title": item.fields["System.Title"],
+        "description":  item.fields["System.Description"],
+        "acceptance_criteria":  item.fields["Microsoft.VSTS.Common.AcceptanceCriteria"],
+        "id":  item.fields["System.Id"]
+      };
+     }
+
+     if (item.fields["System.WorkItemType"] === "Feature") {
+      result = {
+        "type": item.fields["System.WorkItemType"],
+        "title": item.fields["System.Title"],
+        "problemoropportunity":  item.fields["Custom.ProblemorOpportunity"],
+        "acceptance_criteria":  item.fields["Microsoft.VSTS.Common.AcceptanceCriteria"],
+        "priority": item.fields["Microsoft.VSTS.Common.Priority"],
+        "businessvalue": item.fields["Microsoft.VSTS.Common.BusinessValue"],
+        "timesaving": item.fields["Custom.TimeSaving"],
+        "costsaving": item.fields["Custom.CostSaving"],
+        "businessrisk": item.fields["Custom.BusinessRisk"],
+        "usabilityimprovemment": item.fields["Custom.UsabilityImprovement"],
+        "sponsor": item.fields["Custom.Sponsor"],
+        "id":  item.fields["System.Id"]
+      };
+     }
 
     return result;
   });
